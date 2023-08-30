@@ -1,0 +1,30 @@
+ .navbar{
+    height: 5vh;
+    width: 100hw;
+
+ }
+ .navbar ul{
+    width: 100hw;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    cursor: pointer;
+}
+.navbar ul li{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, Courier, monospace, 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+    
+}
+.navbar  a{
+    text-decoration: none;
+    color: black;
+}
+.navbar li i{
+    font-size: 20px;
+}
+.navbar li button{
+    border: none;
+    border-radius: 14px;
+
+}

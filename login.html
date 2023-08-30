@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,500&display=swap" rel="stylesheet">
+   
+    <title>Login - Mercado JVOS</title>
+   
+</head>
+
+<body>
+    <div id="navbarContainer"></div>
+    <nav class="corpo"> 
+        <h1 class="nobleGroves"> Noble Groves</h1>
+    <h2> Login</H2>  
+        <form>      
+            <div>
+                <div><label> Email </label> </div>
+                <input type="email" name="email" id="email" placeholder="seu@email.com" onchange="onChangeEmail()">
+                <div class="error" id="email-required-error"><b> ***Email é obrigatorio </b></div>
+                <div class="error" id="email-invalid-error"><b>***Email é invalido</b></div>
+            </div>
+            <div>
+                <div><label >Senha</label> </div>
+                <input type="password" name="senha" id="password" placeholder="senha" onchange="onChangePassword()">
+                <div class="error" id="password-required-error"><b>***Senha é obrigatoria</b></div>
+            </div>
+            <div> 
+                <button type="button" class="clear" id="recover-password-button" disabled= "true" >Recupere sua senha</button>
+            </div>
+            <div> 
+                <button type="button" class="solid" id="login-button" disabled="true" >Entrar</button>
+            </div>
+            <div> 
+                <button type="button" class="outline" >Registrar</button>
+            </div>
+            
+        </form>
+
+    </nav>
+    
+    <script src="scripts/index.js"></script>
+</body>
+</html>

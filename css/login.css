@@ -1,0 +1,61 @@
+    
+body{
+    background: rgba(0, 242, 93, 0.953);
+    height: 80vh;
+    margin-top: 25px;
+}
+.corpo{
+    margin-top: 205px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+}
+.nobleGroves{
+    color:rgb(255, 255, 255, 0.75);
+   /* color: #ffff; */
+    font-size: 70px;
+    font-family: 'Playfair Display', serif;
+}
+form{
+    width: 400px;
+
+}
+input{
+    border: none;
+}
+input, button{
+    padding: 10px; 
+    margin-bottom: 10px;
+    width: -webkit-fill-available;
+   }
+   button{
+    cursor: pointer;
+   }
+   button:active{
+    opacity: 0.8;
+   }
+   button[disabled]{
+    opacity: 0.7;
+   }
+   .clear{
+    background-color: transparent;
+    border: none;
+    color: white;
+}
+.solid{
+    background-color: white;
+    border: none;
+    color:  rgba(0, 242, 93, 0.953);
+}
+.outline{
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+}
+.error{
+    color: white;
+    display: none;
+    background-color: rgba(233, 12, 12, 0.811);
+}

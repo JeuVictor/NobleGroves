@@ -1,0 +1,18 @@
+
+body{
+    background: rgba(0, 242, 93, 0.953);
+    height: 100vh;
+} 
+.pagSobre{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+}
+.pagSobre nav{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+}

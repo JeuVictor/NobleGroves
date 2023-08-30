@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+body{
+    background: rgba(0, 242, 93, 0.953);
+    height: 100vh;
+}
+.apresentacao{
+    
+    display: flex;      
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    
+}
+.apresentacao h1, h2, p, h3{
+    margin-bottom: 1px;  
+    margin-top: 1px;
+    text-align: center;
+}
+.title{
+    font-family: 'Playfair Display' serif;
+    color: rgba(255,255,255,0.75);
+    font-size: 55px;
+}
+
+ 
