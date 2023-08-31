@@ -16,6 +16,10 @@
     font-size: 20px;
     
 }
+.logo{
+    max-width: 60px;
+    max-height: auto;
+}
 .navbar  a{
     text-decoration: none;
     color: black;
@@ -25,6 +29,10 @@
 }
 .navbar li button{
     border: none;
-    border-radius: 14px;
+    border-radius: 9px;
 
+}
+.sair_login{
+    padding: 07px;
+    margin-bottom: 10px;
 }

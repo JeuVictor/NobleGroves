@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
 body{
-    background: rgba(0, 242, 93, 0.953);
     height: 100vh;
 }
 .apresentacao{
@@ -15,6 +14,10 @@ body{
     margin-bottom: 1px;  
     margin-top: 1px;
     text-align: center;
+}
+.logoApresentacao{
+    height: 250px;
+    width: auto;
 }
 .title{
     font-family: 'Playfair Display' serif;
