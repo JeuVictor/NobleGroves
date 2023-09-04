@@ -13,7 +13,7 @@
    
 </head>
 
-<body>
+<body >
     <nav class="corpo"> 
         <h1 class="nobleGroves"> Noble Groves</h1>
         
@@ -32,11 +32,11 @@
                 <div class="error" id="password-required-error"><b>***Senha é obrigatoria</b></div>
             </div>
             <div> 
-                <button type="button" class="clear" id="recover-password-button" disabled= "true" >Recupere sua senha</button>
+                <button type="button" class="clear" id="recover-password-button" disabled= "true" onclick="recuperarSenha()">Recupere sua senha</button>
             </div>
             <div> 
                 <button type="button" class="solid" id="login-button" disabled="true" onclick="login()" >Entrar</button>
-            </div>
+            </div>  
             <div> 
                 <button type="button" class="outline" onclick="registro()" >Registrar</button>
             </div>
@@ -45,23 +45,12 @@
 
     </nav>
     
-    <script src="scripts/index.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
-    
-    <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-auth-compat.js"></script>
-    <script>
-         const firebaseConfig = {
-    apiKey: "AIzaSyBjZ4d42ATdWiJx_evrzcx0hZOa8YszKvM",
-    authDomain: "noblegroves.firebaseapp.com",
-    projectId: "noblegroves",
-    storageBucket: "noblegroves.appspot.com",
-    messagingSenderId: "1055293695106",
-    appId: "1:1055293695106:web:7951e265931ba99761409b"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  
-
-    </script>
 </body>
+<script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-auth-compat.js"></script>
+<script src="scripts/firebase.js"></script>
+<script src="scripts/index.js"></script>
+<script src="scripts/loading.js"></script>
+<script src="scripts/userlog.js"></script>
+
 </html>

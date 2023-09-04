@@ -36,6 +36,7 @@
                 <div><label >Senha</label> </div>
                 <input type="password" name="senha" id="password" placeholder="senha" onchange="onChangeCadastroPassword()">
                 <div class="error" id="password-required-error"><b>***Senha é obrigatoria</b></div>
+                <div class="error" id="small-password-error"><b>***Senha deve ter no minimo 6 caracteres</b></div>
             </div>
             
             <div>
@@ -43,9 +44,10 @@
                 <input type="password" name="confirme_senha" id="confirme_password" placeholder="senha" onchange="onChangeCadastroRepetPassword()">
                 <div class="error" id="password-required-error"><b>***Senha é obrigatoria</b></div>
                 <div class="error" id="password-repet-error"><b>***Senhas divergentes</b></div>
+                <div class="error" id="small-password-error"><b>***Senha deve ter no minimo 6 caracteres</b></div>
             </div>
             <div> 
-                <button type="button" class="solid" id="login-button" disabled="true" onclick="login()" >Confirmar</button>
+                <button type="button" class="solid" id="login-button" disabled="true" onclick="registroUsuario()" >Confirmar</button>
             </div>
             <div> 
                 <button type="button" class="solid" onclick="entrarConta()" > Voltar </button>
@@ -54,6 +56,12 @@
             
         </form>
     </section>        
+    <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-auth-compat.js"></script>
+    <script src="scripts/firebase.js"></script>
     <script src="scripts/index.js"></script>
+    <script src="scripts/loading.js"></script>
+<script src="scripts/userlog.js"></script>
+
 </body>
 </html>

@@ -24,5 +24,50 @@ body{
     color: rgba(255,255,255,0.75);
     font-size: 55px;
 }
+.promo{
+    justify-content: center;
+}
+.divTexto h2{
+    text-align: center;
+    width: 350px;
+    margin: 7px 35px 35px 35px;
+    font-size: 35px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: rgba(255,255,255,0.75);
+    box-shadow: 0px 7px 7px green;
+}
+.promo .promoImg .img img{
+    width: auto;
+    height: 174px;
+}
+.promo .promoImg .compras{
+    width: 105px;
+    height: 55px;
+    border-radius: 18px;
+    color: green;
+    font-size: 22px;
+    margin: 12px 12px 12px;
+    border: none;
+}
+
+.promo .promoImg{
+    display: flex;
+    flex-direction: row;
+}
+.promo .promoImg .img{
+    width: 289px; 
+    margin: 25px;
+    box-shadow: 0, 7px, 7px green;
+}
+.imagemPromo{
+    width: 289px;
+    background-color: white;
+    display: flex;  
+    justify-content: center;
+}
+.promo .promoImg .img .descricao h3, h4, .compras{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
 
  

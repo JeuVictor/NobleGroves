@@ -27,6 +27,10 @@
 .navbar li i{
     font-size: 20px;
 }
+.navbar ul li{
+    display: flex;
+    align-items: center;
+}
 .navbar li button{
     border: none;
     border-radius: 9px;

@@ -1,4 +1,6 @@
 
+
+
   function onChangeEmail(){
     toggleButtonDiseble();
     toggleErrorEmail();
@@ -15,10 +17,12 @@
   function onChangeCadastroPassword(){
     toggleErrorPassword()
     toggleButtonDisebleCadastro();
+    toggleErrorSmallPassword();
   }
   function onChangeCadastroRepetPassword(){
     toggleErrorPassordRepet();
     toggleButtonDisebleCadastro();
+    toggleErrorSmallPassword();
   }
   function isEmailValid(){
     const email = document.getElementById('email').value;
@@ -39,6 +43,13 @@
     const repetPassword = document.getElementById('confirme_password').value;
     const password = document.getElementById('password').value 
     if (repetPassword != password){
+      return false;
+    }
+    return true;
+  }
+  function isSmallPassword(){
+    const password = form.password().value;
+    if (password.length < 6) {
       return false;
     }
     return true;
@@ -81,7 +92,10 @@
     else{
       document.getElementById('password-repet-error').style.display ="none";
     }
-
+  }
+  function toggleErrorSmallPassword(){
+    const password = form.password().value;
+      form.smallPassword().style.display = password.length >=6 ? "none" : "block";       
   }
   function toggleButtonDiseble(){
     const emailValid = isEmailValid();
@@ -94,26 +108,92 @@
     const emailValid = isEmailValid();
     const passwordValid = isPasswordValid();
     const repetPassword = isRepetPassword();
-    document.getElementById('login-button').disabled =!emailValid || !passwordValid || !repetPassword; 
+    const smallPassword = isSmallPassword();
+    document.getElementById('login-button').disabled =!emailValid || !passwordValid || !repetPassword || !smallPassword;
   }
   const form = {
     email: ()=> document.getElementById('email'),
-    password: ()=> document.getElementById('password')
-    
+    password: ()=> document.getElementById('password'),
+    smallPassword: ()=> document.getElementById('small-password-error')    
 
   }
-
   function login(){
+
+    showLoading();
     firebase.auth().signInWithEmailAndPassword(form.email().value, form.password().value).then(response => {
+      hideLoading();
       window.location.href = "index.html";
   }).catch(error => {
+    hideLoading();
     alert("Usuario ou senha incorretos");
   });
   }
   function registro(){
+    showLoading();
     window.location.href = "registro.html ";
   }
   function entrarConta(){
     window.location.href ="login.html";
   }
 
+  function recuperarSenha(){
+    showLoading();
+    firebase.auth().sendPasswordResetEmail(form.email().value).then(()=> {hideLoading();
+    alert('Email enviado com sucesso');
+  }).catch(error => {
+    hideLoading();
+    alert("Email não cadastrado!");
+  });
+  }
+
+  function registroUsuario(){
+    showLoading();
+    const email = form.email().value;
+    const password = form.password().value;
+    firebase.auth().createUserWithEmailAndPassword(
+      email, password
+      ).then(() => {
+        hideLoading();
+        window.location.href = "index.html"
+       }).catch(error => {
+        hideLoading();
+        alert(errorRegistro(error));
+       });
+  }
+  function errorRegistro(error){
+    if (error == "auth/email-already-in-use"){
+      return "email já está em uso";
+    }
+    return error.message; 
+  }
+
+  var pagAtual = window.location.pathname;
+  firebase.auth().onAuthStateChanged(user => {
+    if (user){
+      if (pagAtual.endsWith('login.html') || pagAtual.endsWith('registro.html')) {
+          window.location.href ="index.html";
+          const nome = toString(user);
+          console.log(nome);
+      }
+    }
+  });
+  firebase.auth().onAuthStateChanged(user => {
+    
+    if (!user){
+      if (!pagAtual.endsWith('login.html'))
+       {  if (!pagAtual.endsWith('registro.html')) {
+           window.location.href ="login.html";              
+        const nome = toString(user);
+        console.log(nome);
+          }
+      }
+    }
+  }); 
+
+  function logOut(){
+    firebase.auth().signOut().then(()=>{
+        window.location.href ="login.html";
+    }).catch(() =>{
+        alert("Error ao fazer logout");
+    });
+}
