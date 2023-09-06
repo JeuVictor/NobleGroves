@@ -3,14 +3,7 @@
     width: 100hw;
 
  }
- .navbar ul{
-    width: 100hw;
-    list-style: none;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    cursor: pointer;
-}
+ 
 .navbar ul li{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, Courier, monospace, 'Arial Narrow', Arial, sans-serif;
     font-size: 20px;
@@ -39,4 +32,59 @@
 .sair_login{
     padding: 07px;
     margin-bottom: 10px;
+}
+
+@media (max-width: 680px){
+    .navbar ul {
+        display: none;
+    }
+    .menuResponsivo{
+        display: block;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+       }
+    .um, .dois, .tres{
+        width: 80%;
+        height: 2px;
+        background-color: white;
+        margin: 6px auto;
+        transition-duration: 0.5;
+    }
+    .navbar.on {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 100wv;
+        height: 100vh;
+        background-color: rgba(30,31,30,0.8);
+        z-index: 10;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .navbar.on .menuResponsivo{
+        position: absolute;
+        right: 40px;
+        top: 20px;
+    }
+    .navbar.on ul{
+        display: block;
+    }
+    .navbar.on ul li{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .navbar.on .menuResponsivo .dois{
+        opacity: 0;
+    }
+    .navbar.on .menuResponsivo .um {
+        transform: rotate(45deg) translate(5px, -8px);
+    }
+    .navbar.on .menuResponsivo .tres{
+        transform: rotate(-45deg) translate(19px, -07px);
+    
+    }
 }

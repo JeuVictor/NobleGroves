@@ -3,20 +3,24 @@ body{
     height: 100vh;
     margin-top: 20px;
 }
-.corpo{
+.cabecaLogin{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    
 }
-.corpo h1, img, h2{
+.corpoLogin{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.corpoLogin h1, img, h2{
     margin-top: 10px;
     margin-bottom: 10px;
 }
 .nobleGroves{
     color:rgb(255, 255, 255, 0.75);
-   /* color: #ffff; */
     font-size: 70px;
     font-family: 'Playfair Display', serif;
 }
@@ -36,3 +40,45 @@ input, button{
     height: 200px;
     width: auto;
    }
+   @media (max-width: 420px){
+    .cabecaLogin h1, .cabecaLogin img{
+        width: 165px;
+        font-size: 50px;
+        height: auto;
+    }
+    .cabecaLogin{
+        flex-direction: row;
+    }
+    form{
+        width: 300px;
+
+    }
+}
+@media (max-width:320px){
+    .cabecaLogin h1, .cabecaLogin img{
+        width: 128px;
+        font-size: 40px;
+    }
+    form{
+        width: 250px;
+    }
+}
+@media (max-width:240px){
+    .cabecaLogin{
+        flex-direction: column;
+    }
+    .cabecaLogin h1, .cabecaLogin img{
+        width: 145px;
+        font-size: 45px;
+        margin-top: 1px;
+        margin-bottom: 1px;
+    }
+    form{
+        width: 200px;
+    }
+}
+@media (max-width:210px){
+    form{
+        width: 150px;
+    }
+}

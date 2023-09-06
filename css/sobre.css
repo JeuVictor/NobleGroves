@@ -1,8 +1,9 @@
 
 body{
     height: 100vh;
+    width: 100vw;
 } 
-.pagSobre{
+.sobre, .contatos{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,4 +15,113 @@ body{
     flex-direction: column;
     align-items: center;
     justify-items: center;
+}
+h3{
+    font-size: 27px;
+}
+p{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 18px;
+}
+.contatos ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 90px));
+    width: 500px;
+}
+.contatos ul li{
+    margin-bottom:10px ;
+}
+.contatos ul li a{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: black;
+}
+.contatos ul li a i{
+    font-size: 45px;
+    color: chocolate;
+    padding-bottom: 3px;
+}
+@media(max-width: 560px){
+    .contatos ul{
+        width: 350px;
+    }
+}
+@media(max-width: 480px){
+    .corpo{
+        width: 90%;
+    }
+    .sobre, .contatos{
+        width: 380px;
+    }
+}
+
+@media (max-width: 400px){
+    .corpo{
+        width: 370px;
+    }
+}
+
+@media (max-width: 400px){
+    .sobre, .contatos{
+        width: 300px;
+    }   
+    .contatos ul{
+        width: 250px;
+    }
+}
+
+@media (max-width: 400px){
+    .corpo{
+        width: 370px;
+    }
+}
+
+@media (max-width: 340px){
+    
+    .sobre, .contatos{
+        width: 280px;
+    }
+    
+    h3{
+        font-size: 25px;
+    }
+    p{
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 17px;
+    }
+}
+@media (max-width: 300px){
+    .sobre, .contatos{
+        width: 250px;
+    }
+}
+
+@media (max-width: 270px){
+    .sobre, .contatos{
+        width: 200px;
+    }
+    .ulLinks{
+        width: 250px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end
+    }
+}
+@media (max-width: 200px){
+    .sobre, .contatos{
+        width: 150px;
+    }
+    
+h3{
+    font-size: 22px;
+}
+p{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 15px;
+}
 }
