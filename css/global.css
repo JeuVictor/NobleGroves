@@ -14,6 +14,17 @@ a{
     text-decoration: none;
 }
 
+.nobleGroves{
+    color:rgb(255, 255, 255, 0.75);
+    font-size: 70px;
+    font-family: 'Playfair Display', serif;
+}
+.cabecaNobleGroves{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 .divTexto h2{
     text-align: center;
     width: 350px;
@@ -25,11 +36,13 @@ a{
 }
 
 .corpo{
+    
     align-items: center;
     background-color: honeydew;
-    margin-top: 30px;
+    margin-top: 100px;
     padding: 10px;
     border-radius: 33px;
+    margin-bottom: 50px;
 }
 button{
     cursor: pointer;
@@ -75,6 +88,25 @@ button{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+#navbarContainer{
+    position: fixed;
+    width: 100%;
+    background-color: honeydew;
+}
+.menuResponsivo{
+    display: none;
+    cursor: pointer;
+}
+.um, .dois, .tres{
+    display: block;
+    width: 28px;
+    height: 3px;
+    border-radius: 2px;
+    margin: 5px auto;
+    background-color: antiquewhite;
+    transition: all 0.3s ease-in-out;
+    border: 1px solid black;
 }
 @media (max-width: 1800px){
     .corpo{
@@ -168,6 +200,29 @@ button{
     .loading{
         margin-top: -97%;
     }
+    #navbarContainer{
+        display: none;
+    }
+    #navbarContainer.navbar.active{
+        display: block;
+    }
+    .menuResponsivo{
+        display: block;
+        top: 30px;
+        position: fixed;
+        
+    }
+    .menuResponsivo.active .dois{
+        opacity: 0;
+    }
+    .menuResponsivo.active .um{
+        transform: rotate(45deg) translate(6px, 5px);
+        display: block;
+    }
+    .menuResponsivo.active .tres{
+        transform: rotate(-45deg) translate(6px, -7px);
+        display: block;
+    }
 }
 
 @media (max-width: 600px){
@@ -203,6 +258,14 @@ button{
     }    
     .loading{
         margin-top: -124%;
+    }
+    .cabecaNobleGroves h1, .cabecaNobleGroves img{
+        width: 165px;
+        font-size: 50px;
+        height: auto;
+    }
+    .cabecaNobleGroves{
+        flex-direction: row;
     }
 }
 
@@ -261,6 +324,10 @@ button{
     .corpo{
         width: 300px;
     }
+    .cabecaNobleGroves h1, .cabecaNobleGroves img{
+        width: 128px;
+        font-size: 40px;
+    }
 }
 
 @media (max-width: 300px){
@@ -287,6 +354,15 @@ button{
     .divTexto h2 {
         width: 150px;
         font-size: 25px;
+    }
+    .cabecaNobleGroves{
+        flex-direction: column;
+    }
+    .cabecaNobleGroves h1, .cabecaNobleGroves img{
+        width: 145px;
+        font-size: 45px;
+        margin-top: 1px;
+        margin-bottom: 1px;
     }
 }
 

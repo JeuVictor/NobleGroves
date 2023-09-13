@@ -197,3 +197,4 @@
         alert("Error ao fazer logout");
     });
 }
+

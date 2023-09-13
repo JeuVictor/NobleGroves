@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compras - Noble Groves</title>
+
+    <link rel="stylesheet" href="css/compra.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,500&display=swap" rel="stylesheet">
+   <link rel="shortcut icon" href="src/img/NobleGrovesICO.ico" type="image/x-icon">
+    
+</head>
+<body>
+    <header>    
+        <div id="navbarContainer"></div>
+        <div class="menuResponsivo" id="menu">
+            <div class="um"></div>
+            <div class="dois"></div>
+            <div class="tres"></div>            
+        </div>
+    </header>
+    <div class="cabecaNobleGroves">
+            
+        <h1 class="nobleGroves"> Noble Groves</h1>   
+        <img src="src/img/NobleGroves_semfundos.png" alt="logo Noble Groves" class="logo_login">
+    </div>
+    <section class="pagCompras centralizar">
+        <ol id="listaCompras" class="listaCompras">
+        </ol>
+    </section>
+
+    <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
+    <script src="scripts/firebase.js"></script>
+
+    <script src="scripts/index.js"></script>
+    <script src="scripts/loading.js"></script>
+    <script src="scripts/navabar.js"></script>
+    <script src="scripts/compras.js"></script>
+</body>
+</html>

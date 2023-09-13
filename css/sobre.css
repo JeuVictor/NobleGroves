@@ -25,6 +25,7 @@ p{
 }
 .contatos ul {
     display: grid;
+    margin-top: 20px;
     grid-template-columns: repeat(auto-fit, minmax(90px, 90px));
     width: 500px;
 }

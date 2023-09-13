@@ -1,90 +1,73 @@
- .navbar{
-    height: 5vh;
-    width: 100hw;
-
+ *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
  }
- 
-.navbar ul li{
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, Courier, monospace, 'Arial Narrow', Arial, sans-serif;
-    font-size: 20px;
-    
+ ul{
+    width: 90%;
+ }
+li{
+    list-style: none;
+}
+a{
+    color: black;
+    text-decoration: none;
 }
 .logo{
-    max-width: 60px;
-    max-height: auto;
+    width: 70px;
+    margin: 0;
+    border: 0;
 }
-.navbar  a{
-    text-decoration: none;
-    color: black;
-}
-.navbar li i{
-    font-size: 20px;
-}
-.navbar ul li{
+.navbar{
+    min-width: 70px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    padding: 0 34px;
 }
-.navbar li button{
+.navLista{
+    display: flex;
+    align-items: center;
+    gap: 0 30px;
+}
+.linkNav{
+    transition: 0.3s ease;
+}
+.linkNav:hover{
+    color: aquamarine;
+}
+button{
+    width: 90px;
+    height: 30px;
+    border-radius: 15px;
     border: none;
-    border-radius: 9px;
-
 }
-.sair_login{
-    padding: 07px;
-    margin-bottom: 10px;
+@media (max-width: 800px){
+    .navLista{
+        gap: 0 20px;
+        margin-left: 40px;
+    }
 }
-
-@media (max-width: 680px){
-    .navbar ul {
-        display: none;
-    }
-    .menuResponsivo{
-        display: block;
-        width: 30px;
-        height: 30px;
-        cursor: pointer;
-       }
-    .um, .dois, .tres{
-        width: 80%;
-        height: 2px;
-        background-color: white;
-        margin: 6px auto;
-        transition-duration: 0.5;
-    }
-    .navbar.on {
-        position: fixed;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        width: 100wv;
-        height: 100vh;
-        background-color: rgba(30,31,30,0.8);
-        z-index: 10;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .navbar.on .menuResponsivo{
-        position: absolute;
-        right: 40px;
-        top: 20px;
-    }
-    .navbar.on ul{
-        display: block;
-    }
-    .navbar.on ul li{
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-    }
-    .navbar.on .menuResponsivo .dois{
-        opacity: 0;
-    }
-    .navbar.on .menuResponsivo .um {
-        transform: rotate(45deg) translate(5px, -8px);
-    }
-    .navbar.on .menuResponsivo .tres{
-        transform: rotate(-45deg) translate(19px, -07px);
+@media (max-width: 700px){
     
+    .navLista{
+        position: fixed;
+        left: 0%;
+        top: 0%;
+        gap: 0;
+        border-radius: 0 0 20px 20px;
+        text-align: center;
+        flex-direction: column;
+        width: 100%;
+        height: 70%;
+        font-size: large;
+        transition: 0.3s;
+        background-color: rgba(0, 0, 0, 0.9);
+        margin: 0;
+    }
+    .linkNav{
+        margin: 16px 0;
+        color: aliceblue;
     }
 }
