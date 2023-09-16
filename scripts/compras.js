@@ -44,19 +44,15 @@ firebase.auth().onAuthStateChanged(user =>{
 
 function findCompra(user){
     showLoading();
-    firebase.firestore()
-        .collection('comprasProduto')
-        .where('user.uid', '==', user.uid)
-        .get()
-        .then(snapshot => {
-            hideLoading();
-            const compras = snapshot.docs.map(doc => doc.data())
-            addCompraTela(compras)
-        })
+    firestoreCollection.buscarCompraUsuario(user)
+        .then(carrinho =>{
+            addCompraTela(carrinho)
+           
+            })
         .catch(error =>{
             hideLoading();
             console.log(error);
-            alert('Erro ao encontrar as compras');
+            alert(`${error}...  Erro ao encontrar as compras`);
         })
 }
 function addCompraTela(compras){
@@ -67,7 +63,7 @@ function addCompraTela(compras){
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
         
-        li.classList.add(compras.type)
+        li.className = compras.type;
 
         const imagem = document.createElement('img');
         imagem.src= idImg(compras.id);
@@ -83,12 +79,12 @@ function addCompraTela(compras){
         div.appendChild(preco);
 
         const txtQtd =document.createElement('p');
-        txtQtd.innerHTML = `Qtd: ${compras.quantidade}`;
+        txtQtd.innerHTML = `Qtd: ${compras.medida} ${parseFloat(compras.quantidade)}`;
         div.appendChild(txtQtd);
 
         
         const total = document.createElement('h4');
-        total.innerHTML = `Total: ${(compras.quantidade * compras.preco.custo).toFixed(2)}`;
+        total.innerHTML = `Total: ${(parseFloat(compras.quantidade) * parseFloat(compras.preco.custo)).toFixed(2)}`;
         div.appendChild(total);
        
         li.appendChild(div);
@@ -100,15 +96,6 @@ function addCompraTela(compras){
         lista.appendChild(li);
         
     })
-
-function compraTotal(){
-    const checkbox = document.getElementById();
-        fakeCompras.forEach(fakeCompras =>{
-            if(checkbox){
-
-            }
-        })
-    }
 
 }
 function FormatDinheiro(preco){
