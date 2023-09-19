@@ -250,9 +250,9 @@ const catalogo = [
         idBtn:"140",
         idBtnOk:"1500",
         type: "none",
-        nome: "",
+        nome: "teste",
         botao: ()=> document.getElementById('140'),
-        comprandoProd: ()=> document.getElementById(" "),
+        comprandoProd: ()=> document.getElementById("teste"),
         confirmar: ()=> document.getElementById("1500"),
         input: ()=> document.getElementById("131401500"),
         preco:{
@@ -374,7 +374,8 @@ function clickCompra(){
                                 carrinho++
                             }
                             botao.classList.remove('active');
-                            comprandoProd.classList.remove('active');
+                            comprandoProd.classList.remove('active');                            
+                            location.href = "index.html#catalogo"
                         })
                     }
                 });
@@ -400,16 +401,22 @@ function carrinhoCliente(p){
                 }
                 
             }
-            firebase.firestore()
-                .collection('comprasProduto')
-                .add(pro)
-                .then( ()=>{
-                    alert("Criado catalogo no firestore")
-                    location.reload()
-                })
-                .catch(()=>{
-                    alert("Erro ao criar catalogo na firestore")
-                })
-      
+            console.log(pro.quantidade)
+            if (pro.quantidade){
+                firebase.firestore()
+                    .collection('comprasProduto')
+                    .add(pro)
+                    .then( ()=>{
+                        showLoading();
+                        alert("Enviando ao carrinho");
+                        hideLoading();
+                    })
+                    .catch(()=>{
+                        alert("Erro ao criar catalogo na firestore")
+                    })
+                } 
+            else{
+                location.reload()
+            }           
 }
 
