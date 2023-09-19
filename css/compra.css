@@ -10,9 +10,9 @@
 .listaCompras{
     padding-left: 0px;
     width: 80%;
-    height: 300px;
-    display: flex;
-    flex-direction: row;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(auto, 250px));
     align-items: center;
     justify-content: space-around;
     border-radius: 20px;
@@ -27,17 +27,17 @@
 }
 .listaCompras img{
     width: auto;
-    height: 100px;
+    height: 145px;
+    margin-top: 10px;
 }
 .listaCompras li{
     background-color: aliceblue;
-    width: 160px;
-    height: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     border-radius: 10px;
+    margin: 7px 0 8px 0;
 }
 .listaCompras li div{
     width: 80%;
@@ -60,3 +60,34 @@
     margin-top: 2px;
     margin-bottom: 2px;
 }
+.totalCompra{
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 935px){
+ .listaCompras{
+    grid-template-columns: repeat(auto-fit, minmax(auto, 185px));
+ }
+ .listaCompras img{
+    height: 105px;
+ }
+}
+@media (max-width: 710px){
+    .listaCompras{
+       grid-template-columns: repeat(auto-fit, minmax(auto, 155px));
+    }
+    .listaCompras img{
+       height: 90px;
+    }
+   }
+   @media (max-width: 600px){
+    .listaCompras{
+       grid-template-columns: repeat(auto-fit, minmax(auto, 125px));
+    }
+    .listaCompras img{
+       height: 70px;
+    }
+   }

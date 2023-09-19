@@ -203,7 +203,7 @@ button{
     #navbarContainer{
         display: none;
     }
-    #navbarContainer.navbar.active{
+    #navbarContainer.active{
         display: block;
     }
     .menuResponsivo{

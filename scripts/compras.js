@@ -46,7 +46,8 @@ function findCompra(user){
     showLoading();
     firestoreCollection.buscarCompraUsuario(user)
         .then(carrinho =>{
-            addCompraTela(carrinho)
+            const contador = carrinho.length - 1;
+            addCompraTela(carrinho, contador)
            
             })
         .catch(error =>{
@@ -55,9 +56,14 @@ function findCompra(user){
             alert(`${error}...  Erro ao encontrar as compras`);
         })
 }
-function addCompraTela(compras){
+
+function addCompraTela(compras, contador){
     const lista = document.getElementById('listaCompras');
+    let i =0;
+    let totalCompra =0;
+    showLoading();
     compras.forEach(compras =>{
+        i ++;
         const li = document.createElement('li');
         const div = document.createElement('div');
         const checkbox = document.createElement('input');
@@ -92,11 +98,21 @@ function addCompraTela(compras){
         divCheck.appendChild(checkbox);
         divCheck.classList = 'check';
         li.appendChild(divCheck);
+        totalCompra = totalCompra+ (compras.quantidade * compras.preco.custo) ;
+        
         
         lista.appendChild(li);
+        if ( i > contador){
+            divTotal = document.createElement('div');
+            divTotal.classList = "totalCompra";
+            h4Total = document.createElement('h4');
+            h4Total.innerHTML = `Total: R$ ${(totalCompra).toFixed(2)}`;
+            divTotal.appendChild(h4Total);
+            lista.appendChild(divTotal);
+        }
         
     })
-
+    hideLoading();
 }
 function FormatDinheiro(preco){
     return `${preco.moeda}: ${preco.custo.toFixed(2)}`
