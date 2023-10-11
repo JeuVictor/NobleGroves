@@ -86,10 +86,11 @@ button{
 .loading{
     background:rgba(0,0 ,0 ,0.7) ;
     color: white;
-    width: 100%;
-    height: 100%;
+    width: 110%;
+    height: 110%;
     position: fixed;
-    margin-top: -44%;
+   /* margin-top: -44%; */
+   top: 0;
     flex-direction: column;
     font-size: 25px;
 }
@@ -187,19 +188,19 @@ button{
     .corpo{
         width: 1200px;
     }
-    .loading{
+    /*.loading{
         margin-top: -53%;
         margin-left: -2%;
-    }
+    }*/
 }
 
 @media (max-width: 1200px){
     .corpo{
         width: 1100px;
     }
-    .loading{
+   /* .loading{
         margin-top: -56%;
-    }
+    }*/
 }
 
 @media (max-width: 1100px){
@@ -207,45 +208,45 @@ button{
         width: 1000px;
     }
     
-    .loading{
+   /* .loading{
         margin-top: -60%;
-    }
+    }*/
 }
 
 @media (max-width: 1000px){
     .corpo{
         width: 900px;
     }
-    .loading{
+   /* .loading{
         margin-top: -67%;
-    }
+    }*/
 }
 
 @media (max-width: 900px){
     .corpo{
         width: 800px;
     }
-    .loading{
+    /*.loading{
         margin-top: -74%;
-    }
+    }*/
 }
 
 @media (max-width: 800px){
     .corpo{
         width: 700px;
     }
-    .loading{
+    /*.loading{
         margin-top: -84%;
-    }
+    }*/
 }
 
 @media (max-width: 700px){
     .corpo{
         width: 600px;
     }
-    .loading{
+   /* .loading{
         margin-top: -97%;
-    }
+    }*/
     #navbarContainer{
         display: none;
     }
@@ -275,36 +276,36 @@ button{
     .corpo{
         width: 550px;
     }
-    .loading{
+    /*.loading{
         margin-top: -118%;
-    }
+    }*/
 }
 
 @media (max-width: 550px){
     .corpo{
         width: 500px;
     }
-    .loading{
+   /* .loading{
         margin-top: -127%;
-    }
+    }*/
 }
 
 @media (max-width: 500px){
     .corpo{
         width: 450px;
     }
-    .loading{
+    /*.loading{
         margin-top: -139%;
-    }
+    }*/
 }
 
 @media (max-width: 450px){
     .corpo{
         width: 400px;
     }    
-    .loading{
+   /* .loading{
         margin-top: -124%;
-    }
+    }*/
     .cabecaNobleGroves h1, .cabecaNobleGroves img{
         width: 165px;
         font-size: 50px;
@@ -319,18 +320,18 @@ button{
     .corpo{
         width: 370px;
     }    
-    .loading{
+    /*.loading{
         margin-top: -130%;
-    }
+    }*/
 }
 
 @media (max-width: 370px){
     .corpo{
         width: 350px;
     }    
-    .loading{
+   /* .loading{
         margin-top: -134%;
-    }
+    }*/
 }
 @media (max-width: 350px){
     
@@ -340,9 +341,9 @@ button{
         margin-top: 4px;
         margin-left: 50px;
     }    
-    .loading{
+    /*.loading{
         margin-top: -139%;
-    }
+    }*/
 }
 
 @media (max-width: 400px){

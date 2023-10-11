@@ -376,14 +376,13 @@ function addCatalogoTela(prod, produtos, promoProduto){
         const comprando = criandoDiv("comprando", produto.nome);
 
         const label = criandoLabel(produto.medida)
-        label.appendChild(criandoP(" Qtd: "))
+        
+        comprando.appendChild(criandoP(" Qtd: "))
+
         label.appendChild(criandoInput('number',`input${produto.id}`, 'quantidadeProd' ))
         
-        comprando.appendChild(criandoBtn("confirmar", produto.idBtnOk, "ok", produto, false))
-
-
         comprando.appendChild(label);
-        
+        comprando.appendChild(criandoBtn("confirmar", produto.idBtnOk, "ok", produto, false))
 
         oferta.appendChild(descricao);
         oferta.appendChild(comprando);

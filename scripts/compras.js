@@ -57,10 +57,10 @@ function findCompra(user){
         })
 }
 
+let totalCompra = 0;
 function addCompraTela(comprasProdutos, contador, user){
     const lista = document.getElementById('listaCompras');
     let indice = 0;
-    let totalCompra =0;
     showLoading();
     comprasProdutos.forEach(compras =>{
 
@@ -93,7 +93,8 @@ function addCompraTela(comprasProdutos, contador, user){
 
         
         const total = document.createElement('h4');
-        total.innerHTML = `Total: ${(parseFloat(compras.quantidade) * parseFloat(compras.preco.custo)).toFixed(2)}`;
+        let valorTotal = (parseFloat(compras.quantidade) * parseFloat(compras.preco.custo)).toFixed(2)
+        total.innerHTML = `Total: ${valorTotal}`;
         div.appendChild(total);
        
         li.appendChild(div);
@@ -112,7 +113,7 @@ function addCompraTela(comprasProdutos, contador, user){
         btnDel.classList = "delete";
         btnDel.addEventListener('click', () =>{
             event.stopPropagation();
-            deletarProduto(compras);
+            deletarProduto(compras, valorTotal);
         })
         divCheck.appendChild(btnDel);
 
@@ -155,7 +156,7 @@ function addCompraTela(comprasProdutos, contador, user){
         li.appendChild(divCheck);
         li.appendChild(comprando);
         li.appendChild(pId);
-        totalCompra = totalCompra+ (compras.quantidade * compras.preco.custo) ;
+        totalCompra = totalCompra + (compras.quantidade * compras.preco.custo) ;
         
         
         lista.appendChild(li);
@@ -163,6 +164,7 @@ function addCompraTela(comprasProdutos, contador, user){
             divTotal = document.createElement('div');
             divTotal.classList = "totalCompra";
             h4Total = document.createElement('h4');
+            h4Total.id = 'totalH4'
             h4Total.innerHTML = `Total: R$ ${(totalCompra).toFixed(2)}`;
             divTotal.appendChild(h4Total);
             lista.appendChild(divTotal);
@@ -175,10 +177,10 @@ function FormatDinheiro(preco){
     return `${preco.moeda}: ${preco.custo.toFixed(2)}`
 }
 
-function deletarProduto(produto) {
+function deletarProduto(produto, valor) {
     const confirmBtn = confirm("Deseja deletar o produto?");
     if(confirmBtn){
-        deletando(produto);
+        deletando(produto, valor);
     }
 }
 
@@ -201,13 +203,16 @@ function prodEditando(p){
 
 }
 
-function deletando(produto){
+function deletando(produto, valor){
 showLoading();
 
     firestoreCollection.removerItem(produto)
         .then(() => {
             hideLoading();
             document.getElementById(produto.uid).remove();
+            totalCompra = (totalCompra - valor).toFixed(2)
+           totalCompraH4 =  document.getElementById("totalH4");
+           totalCompraH4.innerHTML = `Total: R$ ${(totalCompra)}`;
         }).catch(error =>{
             console.log(error)
             alert('Error ao remover a transação');
