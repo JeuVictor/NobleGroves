@@ -1,38 +1,38 @@
 
 function idImg(id){
     if(id == 1){
-        return '../src/img/cafe.jpg';
+        return 'src/img/cafe.jpg';
     }
     if(id == 2){
-        return '../src/img/vinho_domaine.jpeg'
+        return 'src/img/vinho_domaine.jpeg'
     }
     if(id == 3){
-        return '../src/img/vinho_garibalde.jpg';
+        return 'src/img/vinho_garibalde.jpg';
     }
     if(id == 4){
-        return '../src/img/picanha.jpg'
+        return 'src/img/picanha.jpg'
     }if(id == 5){
-        return '../src/img/carne_moida.jpeg';
+        return 'src/img/carne_moida.jpeg';
     }
     if(id == 6){
-        return '../src/img/frango.jpg'
+        return 'src/img/frango.jpg'
     }
     if(id == 7){
-        return '../src/img/arroz.jpeg';
+        return 'src/img/arroz.jpeg';
     }
     if(id == 8){
-        return '../src/img/feijao.jpg'
+        return 'src/img/feijao.jpg'
     }if(id == 9){
-        return '../src/img/rabanete.jpeg';
+        return 'src/img/rabanete.jpeg';
     }
     if(id == 10){
-        return '../src/img/alface.jpeg'
+        return 'src/img/alface.jpeg'
     }
     if(id == 11){
-        return '../src/img/espinafre.jpg';
+        return 'src/img/espinafre.jpg';
     }
     if(id == 12){
-        return '../src/img/repolho.jpg'
+        return 'src/img/repolho.jpg'
     }
 }
 
@@ -269,64 +269,115 @@ const promoCatalogo = document.getElementById('promoCatalogo');
 
 function addCatalogoTela(prod, produtos, promoProduto){ 
     
-    prod.forEach(produto => {
-        const oferta = document.createElement('div')
-        oferta.className = produto.type;
+    function criandoDiv(classe, id){
+        const div = document.createElement('div')
+        div.className = classe;
+        if(id){
+            div.id = id;
+        }
 
-        const produtoImg = document.createElement('div')
-        produtoImg.className = 'produtoImg centralizar';
-        
+        return div
+    }
 
+    function criandoImg(produto){
         const img = document.createElement('img');
         img.alt = produto.nome;
         img.src = idImg(produto.id);
-        produtoImg.appendChild(img);
-        oferta.appendChild(produtoImg);
 
-        const descricao = document.createElement('div');
-        descricao.className = 'descricao centralizar';
+        return img;
+    }
 
-        const h3 = document.createElement('h3');
-        h3.innerHTML = produto.nome;
-        descricao.appendChild(h3);
+    function criandoH3(text){
+        const h3 =document.createElement('h3');
+        h3.innerHTML = text;
 
-        const h4 = document.createElement('h4');
-        h4.innerHTML = ` ${produto.preco.moeda} ${produto.preco.custo}`;
-        descricao.appendChild(h4);
+        return h3;
+    }
+    function criandoH4(text){
+        const texto =document.createElement('h4');
+        texto.innerHTML = text;
 
-        const btn = document.createElement('button');
-        btn.className = "compras";
-        btn.id = produto.idBtn;
-        btn.innerHTML = 'Comprar';
-        btn.onclick = clickCompra();
-        descricao.appendChild(btn);
+        return texto;
+    }
 
-        const comprando = document.createElement('div');
-        comprando.className = "comprando";
-        comprando.id = produto.nome;
+    function criandoBtn(classe, id, texto, produto, funcao){
+       const btn = document.createElement('button');
+        if(classe)
+            btn.className = classe;
+        if(id)
+            btn.id = id;
+        if(texto)
+            btn.innerHTML = texto;
 
-        const label = document.createElement('p');
-        label.innerHTML = "Qtd:"
+        btn.addEventListener('click', ()=>{
+            event.stopPropagation();
+            if (funcao == true){
+                clickCompra(produto)
+            }
+            if (funcao == false) {   
+                clickOk(produto)
+            }
+        })
+
+        return btn;
+     }
+
+     function criandoLabel(texto, id, classe){
+        const label = document.createElement('label');
+        if(id)
+            label.id = id
+        if(classe)
+            label.className = classe
+        if(texto)
+            label.innerHTML = texto
+
+        return label;
+     }
+     function criandoP(texto){
+            
+        const p = document.createElement('p');
+        p.innerHTML = texto
+        return p;
         
-        const medida = document.createElement("label");
-        medida.innerHTML = produto.medida;
+     }
+     function criandoInput(tipo, id, classe){
+        const input = document.createElement('input');;
 
-        const input = document.createElement('input');
-        input.type = 'number';
-        input.className ='quantidadeProd';
-        input.id = `${produto.id}${produto.idBtn}${produto.idBtnOk}`;
+        if(tipo)
+            input.type = tipo;
+        if(id)
+            input.id = id
+        if(classe)
+            input.className = classe
 
-        const confQtd = document.createElement('button');
-        confQtd.innerHTML = "Ok";
-        confQtd.id = produto.idBtnOk;
-        confQtd.className = "confirmar";
-        confQtd.onclick = 'clickCompra()';
+        return input;
+
+     }
+
+    prod.forEach(produto => {
+        const oferta = criandoDiv(produto.type)
+
+        const divImg = criandoDiv('produtoImg centralizar')
+        divImg.appendChild(criandoImg(produto));
+
+        oferta.appendChild(divImg);
+
+        const descricao = criandoDiv('descricao centralizar');        
+        descricao.appendChild(criandoH3(produto.nome));
+        descricao.appendChild(criandoH4(` ${produto.preco.moeda} ${produto.preco.custo}`));
+        descricao.appendChild(criandoBtn('compras', produto.idBtn, 'Comprar', produto, true));        
+        
+        const comprando = criandoDiv("comprando", produto.nome);
+
+        const label = criandoLabel(produto.medida)
+        label.appendChild(criandoP(" Qtd: "))
+        label.appendChild(criandoInput('number',`input${produto.id}`, 'quantidadeProd' ))
+        
+        comprando.appendChild(criandoBtn("confirmar", produto.idBtnOk, "ok", produto, false))
+
 
         comprando.appendChild(label);
-        medida.appendChild(input);
-        comprando.appendChild(medida);
         
-        comprando.appendChild(confQtd);
 
         oferta.appendChild(descricao);
         oferta.appendChild(comprando);
@@ -346,6 +397,7 @@ function getCatalogo(){
     firestoreCollection.buscarCatalogo()
         .then(prodTela =>{
             addCatalogoTela(prodTela, produtos, promoCatalogo)
+            hideLoading();
         })
         .catch(error =>{
             hideLoading();
@@ -353,39 +405,23 @@ function getCatalogo(){
         })
 }
 
-function clickCompra(){
-    catalogo.forEach(produto =>{
-        const botao = produto.botao();
-        const comprandoProd = produto.comprandoProd();  
-        const ok = produto.confirmar();
-        
-            
-            if (botao){
-                botao.addEventListener("click", ()=>{
-                    console.log("clicou no botao");
-                    botao.classList.add('active');
-                    comprandoProd.classList.add('active');
-                    if (ok){
-                        ok.addEventListener("click", ()=>{
-                            console.log("ok");
-                            if (carrinho == 1) {
-                                carrinho = produto;
-                                carrinhoCliente(produto)
-                                carrinho++
-                            }
-                            botao.classList.remove('active');
-                            comprandoProd.classList.remove('active');                            
-                            location.href = "index.html#catalogo"
-                        })
-                    }
-                });
-            }    
-        
-    })
+function clickCompra(botao){
+    let btn = document.getElementById(botao.nome)
+    btn.classList.add('active')
     
+}
+function clickOk(botao){
+    let btn = document.getElementById(botao.nome)
+    carrinhoCliente(botao);
+    btn.classList.remove('active')
+}
+function returnarUid() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('uid');
 }
 
 function carrinhoCliente(p){
+    const input = document.getElementById(`input${p.id}`).value
             const pro = {
                 id : p.id,
                 medida : p.medida,
@@ -395,28 +431,27 @@ function carrinhoCliente(p){
                     custo : p.preco.custo,
                     moeda : p.preco.moeda
                 },
-                quantidade: parseFloat(p.input().value),
+                quantidade: parseFloat(input),
                 user: {
                     uid: firebase.auth().currentUser.uid
-                }
+                },
+                uid: returnarUid()
                 
             }
             console.log(pro.quantidade)
             if (pro.quantidade){
-                firebase.firestore()
-                    .collection('comprasProduto')
-                    .add(pro)
+                firestoreCollection.criandoCompra(pro)
                     .then( ()=>{
                         showLoading();
-                        alert("Enviando ao carrinho");
+                        alert(` "${pro.nome}" enviado ao carrinho`);
                         hideLoading();
                     })
                     .catch(()=>{
                         alert("Erro ao criar catalogo na firestore")
                     })
-                } 
+            } 
             else{
-                location.reload()
-            }           
+                alert('quantidade não informada');
+            }
 }
 

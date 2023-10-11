@@ -21,9 +21,9 @@ input{
     border: none;
 }
 input, button{
-    padding: 10px; 
-    margin-bottom: 10px;
-    width: -webkit-fill-available;
+        padding: 10px; 
+        margin-bottom: 10px;
+        width: -webkit-fill-available;
    }
    .logo_login{
     height: 200px;

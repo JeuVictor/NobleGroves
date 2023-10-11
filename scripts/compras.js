@@ -1,40 +1,40 @@
 
 function idImg(id){
     if(id == 1){
-        return '../src/img/cafe.jpg';
+        return 'src/img/cafe.jpg';
     }
     if(id == 2){
-        return '../src/img/vinho_domaine.jpeg'
+        return 'src/img/vinho_domaine.jpeg'
     }
     if(id == 3){
-        return '../src/img/vinho_garibalde.jpg';
+        return 'src/img/vinho_garibalde.jpg';
     }
     if(id == 4){
-        return '../src/img/picanha.jpg'
+        return 'src/img/picanha.jpg'
     }if(id == 5){
-        return '../src/img/carne_moida.jpeg';
+        return 'src/img/carne_moida.jpeg';
     }
     if(id == 6){
-        return '../src/img/frango.webp'
+        return 'src/img/frango.webp'
     }
     if(id == 7){
-        return '../src/img/arroz.jpeg';
+        return 'src/img/arroz.jpeg';
     }
     if(id == 8){
-        return '../src/img/feijao.jpg'
+        return 'src/img/feijao.jpg'
     }if(id == 9){
-        return '../src/img/rabanete.jpeg';
+        return 'src/img/rabanete.jpeg';
     }
     if(id == 10){
-        return '../src/img/alface.jpeg'
+        return 'src/img/alface.jpeg'
     }
     if(id == 11){
-        return '../src/img/espinafre.jpg';
+        return 'src/img/espinafre.jpg';
     }
     if(id == 12){
-        return '../src/img/repolho.jpg'
+        return 'src/img/repolho.jpg'
     }
-}
+}   
 
 firebase.auth().onAuthStateChanged(user =>{
     if (user){
@@ -47,7 +47,7 @@ function findCompra(user){
     firestoreCollection.buscarCompraUsuario(user)
         .then(carrinho =>{
             const contador = carrinho.length - 1;
-            addCompraTela(carrinho, contador)
+            addCompraTela(carrinho, contador, user)
            
             })
         .catch(error =>{
@@ -57,23 +57,26 @@ function findCompra(user){
         })
 }
 
-function addCompraTela(compras, contador){
+function addCompraTela(comprasProdutos, contador, user){
     const lista = document.getElementById('listaCompras');
-    let i =0;
+    let indice = 0;
     let totalCompra =0;
     showLoading();
-    compras.forEach(compras =>{
-        i ++;
+    comprasProdutos.forEach(compras =>{
+
+        const pId = document.createElement('p')
+        let variavel;
+
+        console.log(variavel)    
+        indice++;
         const li = document.createElement('li');
         const div = document.createElement('div');
-        const checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
+        li.id = compras.uid;
         
         li.className = compras.type;
 
         const imagem = document.createElement('img');
         imagem.src= idImg(compras.id);
-        checkbox.name = compras.id;
         li.appendChild(imagem);
 
         const nome = document.createElement('h4');
@@ -95,14 +98,68 @@ function addCompraTela(compras, contador){
        
         li.appendChild(div);
         const divCheck = document.createElement('div');
-        divCheck.appendChild(checkbox);
+        const btnEdit = document.createElement('button');
+        btnEdit.innerHTML = "Editar";
+        btnEdit.classList = "edit";
+        btnEdit.addEventListener('click', () =>{
+            event.stopPropagation();
+            editarProduto(compras);
+        })
+        divCheck.appendChild(btnEdit);
+
+        const btnDel = document.createElement('button');
+        btnDel.innerHTML = "Excluir";
+        btnDel.classList = "delete";
+        btnDel.addEventListener('click', () =>{
+            event.stopPropagation();
+            deletarProduto(compras);
+        })
+        divCheck.appendChild(btnDel);
+
+        const comprando = document.createElement('div');
+        comprando.className = "comprando";
+        comprando.id = compras.nome;
+
+        const label = document.createElement('p');
+        label.innerHTML = " Qtd: "
+        
+        const medida = document.createElement("label");
+        medida.innerHTML = ` ${compras.medida} `;
+
+        const input = document.createElement('input');
+        input.type = 'number';
+        input.className ='quantidadeProd';
+        input.id = `input${compras.id}`;
+
+        const confQtd = document.createElement('button');
+        confQtd.innerHTML = "Ok";
+        confQtd.id = compras.idBtnOk;
+        confQtd.className = "confirmar";
+        confQtd.addEventListener('click',() =>{
+            event.stopPropagation(),
+            confEditProduto(compras)
+        })
+
+        medida.appendChild(input);
+
+        const divQtd = document.createElement('div');
+        divQtd.className = "divQtd"
+        divQtd.appendChild(label)
+        divQtd.appendChild(medida)
+        comprando.appendChild(divQtd)
+        comprando.appendChild(confQtd);
+
+    
+
         divCheck.classList = 'check';
         li.appendChild(divCheck);
+        li.appendChild(comprando);
+        li.appendChild(pId);
         totalCompra = totalCompra+ (compras.quantidade * compras.preco.custo) ;
         
         
         lista.appendChild(li);
-        if ( i > contador){
+        if ( indice > contador){
             divTotal = document.createElement('div');
             divTotal.classList = "totalCompra";
             h4Total = document.createElement('h4');
@@ -117,3 +174,78 @@ function addCompraTela(compras, contador){
 function FormatDinheiro(preco){
     return `${preco.moeda}: ${preco.custo.toFixed(2)}`
 }
+
+function deletarProduto(produto) {
+    const confirmBtn = confirm("Deseja deletar o produto?");
+    if(confirmBtn){
+        deletando(produto);
+    }
+}
+
+function prodEditando(p){
+    const qtd = document.getElementById(`input${p.id}`).value
+    return{
+        id : p.id,
+        medida : p.medida,
+        nome : p.nome,
+        type : p.type ,
+        preco: {
+            custo : p.preco.custo,
+            moeda : p.preco.moeda
+        },
+        quantidade: parseFloat(qtd),
+        user: p.user,
+        uid: p.uid
+        
+    }
+
+}
+
+function deletando(produto){
+showLoading();
+
+    firestoreCollection.removerItem(produto)
+        .then(() => {
+            hideLoading();
+            document.getElementById(produto.uid).remove();
+        }).catch(error =>{
+            console.log(error)
+            alert('Error ao remover a transação');
+        })
+    
+}
+
+
+function returnarUid() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('uid');
+}
+
+function atualizando(produto){
+    showLoading();
+    /*
+    firebase.firestore()
+        .collection("comprasProduto")
+        .doc(produto.uid)
+        .update(produto)*/
+    firestoreCollection.atualizar(produto)
+        .then(()=>{
+            hideLoading();
+            window.location.reload();
+
+        }).catch(error =>{
+            console.log(error)
+        })
+
+}
+
+function editarProduto(produto){
+    let btn = document.getElementById(produto.nome)
+    btn.classList.add("active");
+ }
+ function confEditProduto(produto){
+     let btn = document.getElementById(produto.nome)
+     const compra = prodEditando(produto)
+     atualizando(compra);
+     btn.classList.remove("active");
+ }
