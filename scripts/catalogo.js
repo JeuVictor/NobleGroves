@@ -36,6 +36,12 @@ function idImg(id){
     }
 }
 
+firebase.auth().onAuthStateChanged(user =>{
+    if(user){
+        user.getIdToken().then(token =>{console.log(token)})
+    }
+})
+
 let carrinho;
 const catalogo = [
     {
