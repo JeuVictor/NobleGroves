@@ -42,6 +42,16 @@ firebase.auth().onAuthStateChanged(user =>{
     }
 })
 
+function retornarUsuario(){
+    
+    firebase.auth().onAuthStateChanged(user =>{
+        
+        if(!user){
+            window.location.href ="login.html";
+        }
+    })
+}
+
 let carrinho;
 const catalogo = [
     {
@@ -317,7 +327,9 @@ function addCatalogoTela(prod, produtos, promoProduto){
 
         btn.addEventListener('click', ()=>{
             event.stopPropagation();
+            retornarUsuario()
             if (funcao == true){
+                
                 clickCompra(produto)
             }
             if (funcao == false) {   

@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", function () {
     var navbarContainer = document.getElementById("navbarContainer");
     var xhr = new XMLHttpRequest();
@@ -9,5 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
     xhr.send();
   });
+
+  
 
 

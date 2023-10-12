@@ -180,13 +180,11 @@
   firebase.auth().onAuthStateChanged(user => {
     
     if (!user){
-      if (!pagAtual.endsWith('login.html'))
-       {  if (!pagAtual.endsWith('registro.html')) {
-           window.location.href ="login.html";              
-        const nome = toString(user);
-        console.log(nome);
-          }
-      }
+      if (pagAtual.endsWith('compras.html'))
+       
+            window.location.href ="login.html";              
+            const nome = toString(user);
+            console.log(nome);
     }
   }); 
 
